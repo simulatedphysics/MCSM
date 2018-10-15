@@ -1,11 +1,16 @@
 #include <iostream>
+#include <memory>
 #include <armadillo>
 #include "Model/Heisenberg.hpp"
 #include "Algorithm/MonteCarlo.hpp"
+#include "WebSocket.hpp"
+
 
 using namespace arma;
 
 int main() {
+    auto ws = std::make_unique<WebSocket>();
+    
     std::cout << "Phys-sym v. 0.0" << std::endl;
     std::cout << "Simulation software" << std::endl << std::endl;
 

@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
 project(MCSM)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
+
+find_package(Boost 1.67.0 REQUIRED COMPONENTS system)
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+endif()
 
 find_library(MCSM libarmadillo)
 
-add_executable(MCSM main.cpp Model/Model.hpp Model/Heisenberg.cpp Algorithm/MonteCarlo.cpp Lattice/Lattice.hpp Model/Heisenberg.hpp Algorithm/MonteCarlo.hpp Algorithm/Algorithm.hpp)
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.hpp")
+
+add_executable(MCSM ${SOURCES})
 
 target_link_libraries(MCSM armadillo)
