@@ -86,8 +86,10 @@ std::stringstream Heisenberg::save_spin_configuration(int spin_config_number) {
                << (this->spin_config)(i, 1) << "," << "\"z\": " << (this->spin_config)(i, 2) << "}, ";
     }
 
-    output << "{\"spin_number\": " << (this->system_size) - 1 << "," << "\"x\": " << (this->spin_config)((this->system_size) - 1, 0) << "," << "\"y\": "
-           << (this->spin_config)((this->system_size) - 1, 1) << "," << "\"z\": " << (this->spin_config)((this->system_size) - 1, 2) << "}]}";
+    output << "{\"spin_number\": " << (this->system_size) - 1 << "," << "\"x\": "
+           << (this->spin_config)((this->system_size) - 1, 0) << "," << "\"y\": "
+           << (this->spin_config)((this->system_size) - 1, 1) << "," << "\"z\": "
+           << (this->spin_config)((this->system_size) - 1, 2) << "}]}";
 
     return output;
 }
