@@ -4,6 +4,7 @@
 
 #include "Lattice.hpp"
 
+#pragma once
 class Square : public Lattice {
     void generate_lattice() override;
 };
