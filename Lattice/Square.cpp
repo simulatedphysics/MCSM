@@ -11,3 +11,7 @@ void Square::generate_lattice() {
         }
     }
 }
+
+//void Square::find_neighbors() {
+//
+//}

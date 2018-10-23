@@ -43,6 +43,7 @@ int main() {
     std::cout << s.x << std::endl;
     std::cout << s.y << std::endl;
     std::cout << s.z << std::endl;
+    s.print_site();
 
     return 0;
 }

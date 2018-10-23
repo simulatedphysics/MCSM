@@ -18,4 +18,6 @@ public:
 
     virtual void generate_lattice()=0;
     void print_lattice(){for(auto &m:lat){std::cout << m.x << ", " << m.y << ", " << m.z << std::endl;}};
+
+//    virtual void find_neighbors() = 0;
 };

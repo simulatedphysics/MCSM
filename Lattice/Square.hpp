@@ -7,4 +7,5 @@
 #pragma once
 class Square : public Lattice {
     void generate_lattice() override;
+//    void find_neighbors() override;
 };
