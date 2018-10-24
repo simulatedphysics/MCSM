@@ -35,15 +35,12 @@ int main() {
     lattice_ptr->generate_lattice();
     Site s((lattice_ptr->lat)[5]);
 
+    Site * s_ptr = &s;
+
     lattice_ptr->print_lattice();
 
-//    Site s(1, 2, 3);
-//
-
-    std::cout << s.x << std::endl;
-    std::cout << s.y << std::endl;
-    std::cout << s.z << std::endl;
-    s.print_site();
+    (*s_ptr).print_site();
+    std::cout << lattice_ptr -> convert_to_index((1 + 1) % 4, (1 + 0) % 4) << std::endl;
 
     return 0;
 }
