@@ -46,11 +46,11 @@ int main() {
     (*((lattice_ptr->lat)[0].neighbors[1])).print_site();
 
     Model *model_ptr;
-    Ising ising;
+    Ising ising(16);
     model_ptr = &ising;
 
-    for (int i = 0; i < 15; i++)
-        std::cout << "New spin: " << model_ptr->new_spin() << std::endl;
+    model_ptr->create_initial_spin_configuration();
+    std::cout << model_ptr->spin_config << std::endl;
 
     return 0;
 }

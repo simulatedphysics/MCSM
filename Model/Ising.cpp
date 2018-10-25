@@ -6,6 +6,11 @@
 #include "Ising.hpp"
 #include "../Lattice/Square.hpp"
 
+
+Ising::Ising(int system_size) {
+    this->system_size = system_size;
+}
+
 double Ising::energy(){
     return 0.0;
 };
@@ -29,7 +34,17 @@ mat Ising::new_spin(){
 };
 
 mat Ising::create_initial_spin_configuration(){
-    return mat(3,3);
+    mat spin_configuration(this->system_size, 3);
+
+    for (int i = 0; i < this->system_size; i++) {
+        mat ns = new_spin();
+        for (int j = 0; j < 3; j++) {
+            spin_configuration(i, j) = ns(j);
+        }
+    }
+
+    this->spin_config = spin_configuration;
+    return spin_configuration;
 };
 
 void Ising::update_spin_configuration(uword ind, mat n_spin){

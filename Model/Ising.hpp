@@ -5,6 +5,9 @@
 #include "Model.hpp"
 
 class Ising : public Model {
+public:
+    explicit Ising(int system_size);
+
     double energy() override;
 
     double energy_change(int ind, mat new_spin_vec) override;
