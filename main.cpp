@@ -40,7 +40,11 @@ int main() {
     lattice_ptr->print_lattice();
 
     (*s_ptr).print_site();
-    std::cout << lattice_ptr -> convert_to_index((1 + 1) % 4, (1 + 0) % 4) << std::endl;
+//    std::cout << lattice_ptr -> convert_to_index((1 + 1) % 4, (1 + 0) % 4) << std::endl;
+
+    lattice_ptr->find_neighbor_indices(0,0);
+    (*((lattice_ptr->lat)[0].neighbors[0])).print_site();
+    (*((lattice_ptr->lat)[0].neighbors[1])).print_site();
 
     return 0;
 }

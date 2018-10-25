@@ -21,7 +21,9 @@ int Square::convert_to_index(int x_, int y_) {
     return n_x * y_ + x_;
 }
 
-//void Square::find_neighbor_indices(int x_, int y_) {
-//    std::vector<Site>::iterator a = lat.begin();
-//    lat[0].neighbors.push_back(a + convert_to_index((x_ + 1) % n_x, (y_ + 1) % n_y));
-//}
+void Square::find_neighbor_indices(int x_, int y_) {
+    std::vector<Site>::pointer a;
+    a = &lat.front();
+    lat[0].neighbors.push_back(a + convert_to_index(x_ % n_x, (y_ + 1) % n_y));
+    lat[0].neighbors.push_back(a + convert_to_index((x_ + 1) % n_x, y_ % n_y));
+}
