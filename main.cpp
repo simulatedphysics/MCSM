@@ -4,6 +4,8 @@
 //#include "Algorithm/MonteCarlo.hpp"
 #include "Lattice/Square.hpp"
 #include "Lattice/Lattice.hpp"
+#include <random>
+#include "Model/Ising.hpp"
 
 using namespace arma;
 
@@ -35,16 +37,20 @@ int main() {
     lattice_ptr->generate_lattice();
     Site s((lattice_ptr->lat)[5]);
 
-    Site * s_ptr = &s;
+    Site *s_ptr = &s;
 
     lattice_ptr->print_lattice();
 
-    (*s_ptr).print_site();
-//    std::cout << lattice_ptr -> convert_to_index((1 + 1) % 4, (1 + 0) % 4) << std::endl;
-
-    lattice_ptr->find_neighbor_indices(0,0);
+    lattice_ptr->find_neighbor_indices(0, 0);
     (*((lattice_ptr->lat)[0].neighbors[0])).print_site();
     (*((lattice_ptr->lat)[0].neighbors[1])).print_site();
+
+    Model *model_ptr;
+    Ising ising;
+    model_ptr = &ising;
+
+    for (int i = 0; i < 15; i++)
+        std::cout << "New spin: " << model_ptr->new_spin() << std::endl;
 
     return 0;
 }

@@ -11,6 +11,6 @@ add_executable(
         Model/Heisenberg.cpp
         Algorithm/MonteCarlo.cpp
         Lattice/Square.cpp
-        Lattice/Site.hpp Lattice/Site.cpp Spin/Spin.hpp)
+        Lattice/Site.hpp Lattice/Site.cpp Spin/Spin.hpp Model/Ising.hpp Model/Ising.cpp)
 
 target_link_libraries(MCSM armadillo)
