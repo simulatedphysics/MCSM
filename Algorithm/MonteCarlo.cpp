@@ -38,3 +38,21 @@ void MonteCarlo::simulate(int nitr, Model *model_ptr) {
     output << output_json.dump();
     output.close();
 }
+
+//    Model *model_ptr;
+//    Heisenberg heisenberg(10);
+//    model_ptr = &heisenberg;
+//
+//    heisenberg.create_ferromagnetic_exchange_matrix();
+//    model_ptr->create_initial_spin_configuration();
+//    std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
+//    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
+//
+//    int n_itr = 10000;
+//    Algorithm *alg;
+//    MonteCarlo mc;
+//    alg = &mc;
+//    alg->simulate(n_itr, model_ptr);
+//
+//    std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
+//    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;

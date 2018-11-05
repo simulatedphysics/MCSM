@@ -13,24 +13,6 @@ int main() {
     std::cout << "Phys-sym v. 0.0" << std::endl;
     std::cout << "Simulation software" << std::endl << std::endl;
 
-//    Model *model_ptr;
-//    Heisenberg heisenberg(10);
-//    model_ptr = &heisenberg;
-//
-//    heisenberg.create_ferromagnetic_exchange_matrix();
-//    model_ptr->create_initial_spin_configuration();
-//    std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
-//    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
-//
-//    int n_itr = 10000;
-//    Algorithm *alg;
-//    MonteCarlo mc;
-//    alg = &mc;
-//    alg->simulate(n_itr, model_ptr);
-//
-//    std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
-//    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
-
     Lattice *lattice_ptr;
     Square square;
     lattice_ptr = &square;
@@ -39,18 +21,26 @@ int main() {
 
     Site *s_ptr = &s;
 
-    lattice_ptr->print_lattice();
+    std::cout << "B1" << std::endl;
 
-    lattice_ptr->find_neighbor_indices(0, 0);
-    (*((lattice_ptr->lat)[0].neighbors[0])).print_site();
-    (*((lattice_ptr->lat)[0].neighbors[1])).print_site();
+//    lattice_ptr->print_lattice();
+
+//    std::cout << (*((lattice_ptr->lat)[7].neighbors[0])).x << std::endl;
 
     Model *model_ptr;
     Ising ising(16);
     model_ptr = &ising;
 
+    std::cout << "B2" << std::endl;
+
     model_ptr->create_initial_spin_configuration();
-    std::cout << model_ptr->spin_config << std::endl;
+//    std::cout << model_ptr->spin_config << std::endl;
+
+    std::cout << "First spin:" << model_ptr->spin_config.row(0);
+    std::cout << "Second spin:" << model_ptr->spin_config.row(1);
+    std::cout << "Dot product:" << dot(model_ptr->spin_config.row(0), model_ptr->spin_config.row(1)) << std::endl;
+
+    std::cout << "Energy: " << model_ptr->energy() << std::endl;
 
     return 0;
 }

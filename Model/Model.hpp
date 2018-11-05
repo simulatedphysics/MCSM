@@ -4,6 +4,7 @@
 
 #include <armadillo>
 #include <fstream>
+#include "../Lattice/Square.hpp"
 
 using namespace arma;
 
@@ -13,6 +14,7 @@ class Model {
 public:
     mat spin_config;
     int system_size;
+    Square *lattice;
 
     virtual double energy() = 0;
 
@@ -31,4 +33,10 @@ public:
     virtual void update_spin_configuration(uword ind, mat n_spin) = 0;
 
     virtual std::stringstream save_spin_configuration(int spin_config_number) = 0;
+
+//    Model() {
+//        std::cout << "Break 1" << std::endl;
+//        lattice->find_neighbors();
+//        std::cout << "Break 2" << std::endl;
+//    }
 };

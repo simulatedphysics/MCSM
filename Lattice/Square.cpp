@@ -7,7 +7,7 @@
 
 void Square::generate_lattice() {
     for (int i = 0; i < 4; i++) {
-        for(int j = 0; j < 4; j++) {
+        for (int j = 0; j < 4; j++) {
             lat.push_back(Site(j, i, 0));
         }
     }
@@ -21,9 +21,12 @@ int Square::convert_to_index(int x_, int y_) {
     return n_x * y_ + x_;
 }
 
-void Square::find_neighbor_indices(int x_, int y_) {
+void Square::find_neighbors() {
     std::vector<Site>::pointer a;
     a = &lat.front();
-    lat[0].neighbors.push_back(a + convert_to_index(x_ % n_x, (y_ + 1) % n_y));
-    lat[0].neighbors.push_back(a + convert_to_index((x_ + 1) % n_x, y_ % n_y));
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++) {
+            lat[n_x * j + i].neighbors.push_back(a + convert_to_index(i % n_x, (j + 1) % n_y));
+            lat[n_x * j + i].neighbors.push_back(a + convert_to_index((i + 1) % n_x, j % n_y));
+        }
 }
