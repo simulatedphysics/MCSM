@@ -5,7 +5,9 @@
 #include "Lattice/Square.hpp"
 #include "Lattice/Lattice.hpp"
 #include <random>
+#include <bits/unique_ptr.h>
 #include "Model/Ising.hpp"
+#include <memory>
 
 using namespace arma;
 
@@ -31,26 +33,23 @@ int main() {
 //    std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
 //    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
 
-    Lattice *lattice_ptr;
-    Square square;
-    lattice_ptr = &square;
-    lattice_ptr->generate_lattice();
-    Site s((lattice_ptr->lat)[5]);
+//    Square square;
+    std::unique_ptr<Lattice> lattice_ptr(new Square);
 
-    Site *s_ptr = &s;
+//    lattice_ptr->generate_lattice();
+//    Site s((lattice_ptr->lat)[5]);
+//
+//    Site *s_ptr = &s;
 
     lattice_ptr->print_lattice();
 
     lattice_ptr->find_neighbor_indices(0, 0);
-    (*((lattice_ptr->lat)[0].neighbors[0])).print_site();
     (*((lattice_ptr->lat)[0].neighbors[1])).print_site();
-
-    Model *model_ptr;
-    Ising ising(16);
-    model_ptr = &ising;
-
-    model_ptr->create_initial_spin_configuration();
-    std::cout << model_ptr->spin_config << std::endl;
+//
+//    std::unique_ptr<Model> model_ptr(new Ising(16));
+//
+//    model_ptr->create_initial_spin_configuration();
+//    std::cout << model_ptr->spin_config << std::endl;
 
     return 0;
 }
