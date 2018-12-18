@@ -22,4 +22,6 @@ public:
     virtual void find_neighbor_indices(int x_, int y_) = 0;
 //    virtual void find_neighbors() = 0;
     virtual int convert_to_index(int, int) = 0;
+
+//    virtual ~Lattice(){};
 };

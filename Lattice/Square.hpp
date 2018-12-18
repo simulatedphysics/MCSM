@@ -11,4 +11,5 @@ public:
 //    void find_neighbors() override;
     void find_neighbor_indices(int x_, int y_) override;
     int convert_to_index(int x_, int y_) override;
+    Square(){generate_lattice();};
 };

@@ -3,6 +3,7 @@ project(MCSM)
 
 set(CMAKE_CXX_STANDARD 11)
 
+#find_package(nlohmann_json 3.2.0 REQUIRED)
 find_library(MCSM libarmadillo)
 
 add_executable(
@@ -11,6 +12,7 @@ add_executable(
         Model/Heisenberg.cpp
         Algorithm/MonteCarlo.cpp
         Lattice/Square.cpp
-        Lattice/Site.hpp Lattice/Site.cpp Spin/Spin.hpp Model/Ising.hpp Model/Ising.cpp)
+        Lattice/Site.hpp Lattice/Site.cpp Spin/Spin.hpp Model/Ising.hpp Model/Ising.cpp
+)
 
 target_link_libraries(MCSM armadillo)
