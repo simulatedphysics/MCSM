@@ -4,9 +4,9 @@
 
 #include "MonteCarlo.hpp"
 #include "../Model/Model.hpp"
-//#include <nlohmann/json.hpp>
+#include <nlohmann/json.hpp>
 
-//using json = nlohmann::json;
+using json = nlohmann::json;
 
 void MonteCarlo::simulate(int nitr){  //, Model *model_ptr) {
 //    std::ofstream output;
