@@ -20,10 +20,10 @@ mat Heisenberg::new_spin() {
 }
 
 mat Heisenberg::create_initial_spin_configuration() {
-    mat spin_configuration(this->system_size, 3);
+    mat spin_configuration(static_cast<const uword>(this->system_size), 3);
 
     for (int i = 0; i < this->system_size; i++) {
-        mat ns = new_spin();
+        rowvec ns = new_spin();
         for (int j = 0; j < 3; j++) {
             spin_configuration(i, j) = ns(j);
         }
