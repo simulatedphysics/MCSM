@@ -6,7 +6,7 @@
 
 class Heisenberg : public Model {
 public:
-    mat exchange_matrix;
+//    mat exchange_matrix;
 
     double energy() override;
 
@@ -20,9 +20,9 @@ public:
 
     mat create_initial_spin_configuration() override;
 
-    mat create_ferromagnetic_exchange_matrix();
+//    void create_ferromagnetic_exchange_matrix();
 
-    mat create_ferromagnetic_spin_configuration();
+    void create_ferromagnetic_spin_configuration() override;
 
     void update_spin_configuration(uword ind, mat n_spin) override;
 

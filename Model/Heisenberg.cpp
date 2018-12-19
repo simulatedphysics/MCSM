@@ -26,10 +26,10 @@ mat Heisenberg::create_initial_spin_configuration() {
     return spin_configuration;
 }
 
-mat Heisenberg::create_ferromagnetic_exchange_matrix() {
-    this->exchange_matrix = -ones(this->system_size, this->system_size);
-    return -ones(this->system_size, this->system_size);
-}
+//mat Heisenberg::create_ferromagnetic_exchange_matrix() {
+//    this->exchange_matrix = -ones(this->system_size, this->system_size);
+//    return -ones(this->system_size, this->system_size);
+//}
 
 double Heisenberg::energy() {
     double eng = 0.0;
@@ -94,18 +94,22 @@ std::stringstream Heisenberg::save_spin_configuration(int spin_config_number) {
     return output;
 }
 
-
 //mat Heisenberg::create_ferromagnetic_spin_configuration() {
-//    mat spin_configuration(10, 3);
-//
-//    vec ns = new_spin();
-//
-//    for (int i = 0; i < 10; i++) {
-//        for (int j = 0; j < 3; j++) {
-//            spin_configuration(i, j) = ns(j);
-//        }
-//    }
-//
-//    this->spin_config = spin_configuration;
-//    return spin_configuration;
+//    return arma::mat();
 //}
+
+
+void Heisenberg::create_ferromagnetic_spin_configuration() {
+    mat spin_configuration(10, 3);
+
+    rowvec ns = new_spin();
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 3; j++) {
+            spin_configuration(i, j) = ns(j);
+        }
+    }
+
+    this->spin_config = spin_configuration;
+//    return spin_configuration;
+}

@@ -13,6 +13,7 @@ class Model {
 public:
     mat spin_config;
     int system_size;
+    mat exchange_matrix;
 
     virtual double energy() = 0;
 
@@ -31,4 +32,6 @@ public:
     virtual void update_spin_configuration(uword ind, mat n_spin) = 0;
 
     virtual std::stringstream save_spin_configuration(int spin_config_number) = 0;
+
+    virtual void create_ferromagnetic_spin_configuration() = 0;
 };
