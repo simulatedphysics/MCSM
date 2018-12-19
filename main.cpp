@@ -15,16 +15,23 @@ int main() {
     std::cout << "Phys-sym v. 0.0" << std::endl;
     std::cout << "Simulation software" << std::endl << std::endl;
 
-    std::unique_ptr<Model> model_ptr(new Heisenberg(10));
+    std::shared_ptr<Model> model_ptr(new Heisenberg(10));
 
-    std::cout << (model_ptr -> new_spin()) << std::endl;
-    model_ptr->create_ferromagnetic_spin_configuration();
-//    model_ptr->create_initial_spin_configuration();
+    std::cout << "Creating initial spin configuration" << std::endl;
+//    model_ptr->create_ferromagnetic_spin_configuration();
+    model_ptr->create_initial_spin_configuration();
+
     std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
-    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
+    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl << std::endl;
 //
     int n_itr = 10000;
-//    std::unique_ptr<Algorithm> alg;
+    std::unique_ptr<Algorithm> alg(new MonteCarlo);
+
+    alg->simulate(n_itr, model_ptr);
+
+    std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
+    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl << std::endl;
+
 //    MonteCarlo mc;
 //    alg = &mc;
 //    alg->simulate(n_itr, model_ptr);
