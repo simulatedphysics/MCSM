@@ -26,7 +26,7 @@ void MonteCarlo::simulate(int nitr,  std::shared_ptr<Model> & model_ptr) {
         uword random_index = static_cast<uword>(randi<umat>(1, 1, distr_param(0, (model_ptr->system_size) - 1))(0));
         mat old = model_ptr->spin_config.row(random_index);
         mat new_s = model_ptr->new_spin();
-        double change_eng = model_ptr->energy_change(random_index, new_s);
+        double change_eng = model_ptr->energy_change(static_cast<int>(random_index), new_s);
 
         if (change_eng < 0.0) {
             model_ptr->update_spin_configuration(random_index, new_s);
