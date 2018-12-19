@@ -20,7 +20,7 @@ public:
 
     mat create_initial_spin_configuration() override;
 
-//    void create_ferromagnetic_exchange_matrix();
+    mat create_ferromagnetic_exchange_matrix();
 
     void create_ferromagnetic_spin_configuration() override;
 

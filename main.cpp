@@ -21,9 +21,9 @@ int main() {
     model_ptr->create_ferromagnetic_spin_configuration();
 //    model_ptr->create_initial_spin_configuration();
     std::cout << "The spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
-//    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
+    std::cout << "The energy of the system is: " << model_ptr->energy() << std::endl;
 //
-//    int n_itr = 10000;
+    int n_itr = 10000;
 //    std::unique_ptr<Algorithm> alg;
 //    MonteCarlo mc;
 //    alg = &mc;

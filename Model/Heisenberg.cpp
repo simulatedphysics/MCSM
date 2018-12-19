@@ -4,8 +4,15 @@
 
 #include "Heisenberg.hpp"
 
+mat Heisenberg::create_ferromagnetic_exchange_matrix() {
+    this->exchange_matrix = -ones(static_cast<const uword>(this->system_size),
+                                  static_cast<const uword>(this->system_size));
+    return -ones(this->system_size, this->system_size);
+}
+
 Heisenberg::Heisenberg(int system_size) {
     this->system_size = system_size;
+    create_ferromagnetic_exchange_matrix();
 }
 
 mat Heisenberg::new_spin() {
@@ -26,10 +33,6 @@ mat Heisenberg::create_initial_spin_configuration() {
     return spin_configuration;
 }
 
-//mat Heisenberg::create_ferromagnetic_exchange_matrix() {
-//    this->exchange_matrix = -ones(this->system_size, this->system_size);
-//    return -ones(this->system_size, this->system_size);
-//}
 
 double Heisenberg::energy() {
     double eng = 0.0;
