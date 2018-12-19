@@ -7,5 +7,5 @@
 
 class MonteCarlo : public Algorithm {
 public:
-    void simulate(int nitr) override; //, Model *model_ptr) override;
+    void simulate(int nitr, std::shared_ptr<Model> & model_ptr) override;
 };
