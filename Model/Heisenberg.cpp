@@ -72,7 +72,7 @@ imat Heisenberg::choose_random_index() {
 
 mat Heisenberg::old_spin() {
 //    return (this->spin_config)(randi(1,1, distr_param(+1, +10)), 0);
-    return zeros(this->system_size, 3);
+    return zeros(static_cast<const uword>(this->system_size), 3);
 }
 
 void Heisenberg::update_spin_configuration(uword ind, mat n_spin) {
@@ -114,5 +114,4 @@ void Heisenberg::create_ferromagnetic_spin_configuration() {
     }
 
     this->spin_config = spin_configuration;
-//    return spin_configuration;
 }

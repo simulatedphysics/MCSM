@@ -34,7 +34,7 @@ void MonteCarlo::simulate(int nitr,  std::shared_ptr<Model> & model_ptr) {
 		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
         }
     }
-
+    
     output << output_json.dump();
     output.close();
 }
