@@ -3,7 +3,6 @@ project(MCSM)
 
 set(CMAKE_CXX_STANDARD 11)
 
-#find_package(nlohmann_json 3.2.0 REQUIRED)
 find_library(MCSM libarmadillo)
 
 add_executable(
