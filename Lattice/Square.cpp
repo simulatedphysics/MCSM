@@ -13,21 +13,15 @@ void Square::generate_lattice() {
     }
 }
 
-//void Square::find_neighbors() {
-//
-//}
-
 int Square::convert_to_index(int x_, int y_) {
     return n_x * y_ + x_;
 }
 
-void Square::find_neighbor_indices() {
+void Square::set_neighbors() {
     std::vector<Site>::pointer a;
     a = &lat.front();
-    std::cout << "Break 1" << std::endl;
     for(int i = 0; i < n_x; i++)
         for (int j =0; j< n_y; j++){
-            std::cout << "Break 2" << std::endl;
             int site_ind(convert_to_index(i , j));
             lat[site_ind].neighbors.push_back(a + convert_to_index(i % n_x, (j + 1) % n_y));
             lat[site_ind].neighbors.push_back(a + convert_to_index((i + 1) % n_x, j % n_y));
