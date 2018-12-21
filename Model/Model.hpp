@@ -19,7 +19,7 @@ public:
 
     virtual double energy_change(int ind, mat new_spin_vec) = 0;
 
-    virtual imat choose_random_index() = 0;
+//    virtual imat choose_random_index() = 0;
 
     virtual mat old_spin() = 0;
 

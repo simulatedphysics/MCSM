@@ -16,12 +16,13 @@ double Ising::energy(){
 };
 
 double Ising::energy_change(int ind, mat new_spin_vec){
-    return 0.0;
+    std::cout << new_spin_vec << std::endl;
+    return ind*0.0;
 };
 
-imat Ising::choose_random_index(){
-    return imat(3,3);
-};
+//imat Ising::choose_random_index(){
+//    return imat(3,3);
+//};
 
 mat Ising::old_spin(){
     return mat(1,3);
@@ -33,7 +34,7 @@ mat Ising::new_spin(){
     return s;
 };
 
-mat Ising::create_initial_spin_configuration(){
+void Ising::create_initial_spin_configuration(){
     mat spin_configuration(this->system_size, 3);
 
     for (int i = 0; i < this->system_size; i++) {
@@ -44,12 +45,11 @@ mat Ising::create_initial_spin_configuration(){
     }
 
     this->spin_config = spin_configuration;
-    return spin_configuration;
 };
 
-void Ising::update_spin_configuration(uword ind, mat n_spin){
-
-};
+void Ising::update_spin_configuration(uword ind, mat n_spin) {
+    this->spin_config.row(ind) = n_spin;
+}
 
 std::stringstream Ising::save_spin_configuration(int spin_config_number){
     std::stringstream output;
@@ -68,3 +68,17 @@ std::stringstream Ising::save_spin_configuration(int spin_config_number){
 
     return output;
 };
+
+void Ising::create_ferromagnetic_spin_configuration() {
+    mat spin_configuration(10, 3);
+
+    rowvec ns = new_spin();
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 3; j++) {
+            spin_configuration(i, j) = ns(j);
+        }
+    }
+
+    spin_config = spin_configuration;
+}

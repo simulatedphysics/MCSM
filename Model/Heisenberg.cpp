@@ -19,7 +19,7 @@ mat Heisenberg::new_spin() {
     return normalise(randu<rowvec>(3));
 }
 
-mat Heisenberg::create_initial_spin_configuration() {
+void Heisenberg::create_initial_spin_configuration() {
     mat spin_configuration(static_cast<const uword>(this->system_size), 3);
 
     for (int i = 0; i < this->system_size; i++) {
@@ -30,7 +30,6 @@ mat Heisenberg::create_initial_spin_configuration() {
     }
 
     this->spin_config = spin_configuration;
-    return spin_configuration;
 }
 
 
@@ -66,9 +65,9 @@ double Heisenberg::energy_change(int ind, mat new_spin_vec) {
     return del_eng;
 }
 
-imat Heisenberg::choose_random_index() {
-    return randi(1, 1, distr_param(1, this->system_size));
-}
+//imat Heisenberg::choose_random_index() {
+//    return randi(1, 1, distr_param(1, this->system_size));
+//}
 
 mat Heisenberg::old_spin() {
 //    return (this->spin_config)(randi(1,1, distr_param(+1, +10)), 0);
@@ -113,5 +112,5 @@ void Heisenberg::create_ferromagnetic_spin_configuration() {
         }
     }
 
-    this->spin_config = spin_configuration;
+    spin_config = spin_configuration;
 }

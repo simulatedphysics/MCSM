@@ -12,13 +12,13 @@ public:
 
     double energy_change(int ind, mat new_spin_vec) override;
 
-    imat choose_random_index() override;
+//    imat choose_random_index() override;
 
     mat old_spin() override;
 
     mat new_spin() override;
 
-    mat create_initial_spin_configuration() override;
+    void create_initial_spin_configuration() override;
 
     mat create_ferromagnetic_exchange_matrix();
 
