@@ -25,9 +25,9 @@ public:
 
     virtual mat new_spin() = 0;
 
-    virtual mat create_initial_spin_configuration() = 0;
+    virtual void create_initial_spin_configuration() = 0;
 
-//    void print_spin_configuration(){for(auto &m:spin_config){std::cout << m.x << ", " << m.y << ", " << m.z << std::endl;}};
+    void print_spin_configuration(){std::cout << spin_config << std::endl;};
 
     virtual void update_spin_configuration(uword ind, mat n_spin) = 0;
 
