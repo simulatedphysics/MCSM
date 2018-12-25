@@ -4,6 +4,8 @@
 
 #include <armadillo>
 #include <fstream>
+#include <bits/unique_ptr.h>
+#include "../Lattice/Square.hpp"
 
 using namespace arma;
 
@@ -11,9 +13,10 @@ using namespace arma;
 
 class Model {
 public:
-    mat spin_config;
     int system_size;
+    mat spin_config;
     mat exchange_matrix;
+    Square lat;
 
     virtual double energy() = 0;
 
