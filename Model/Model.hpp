@@ -30,7 +30,7 @@ public:
 
     virtual void create_initial_spin_configuration() = 0;
 
-    void print_spin_configuration(){std::cout << spin_config << std::endl;};
+    void print_spin_configuration(){for (auto &m: lat.lat){m.getSpin().print_spin();}};
 
     virtual void update_spin_configuration(uword ind, mat n_spin) = 0;
 
