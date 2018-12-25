@@ -69,16 +69,28 @@ std::stringstream Ising::save_spin_configuration(int spin_config_number){
     return output;
 };
 
+//void Ising::create_ferromagnetic_spin_configuration() {
+//    mat spin_configuration(10, 3);
+//
+//    rowvec ns = new_spin();
+//
+//    for (int i = 0; i < 10; i++) {
+//        for (int j = 0; j < 3; j++) {
+//            spin_configuration(i, j) = ns(j);
+//        }
+//    }
+//
+//    spin_config = spin_configuration;
+//}
+
 void Ising::create_ferromagnetic_spin_configuration() {
-    mat spin_configuration(10, 3);
+//    mat spin_configuration(10, 3);
+//
+//    rowvec ns = new_spin();
 
-    rowvec ns = new_spin();
-
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 3; j++) {
-            spin_configuration(i, j) = ns(j);
-        }
+    for (auto &m: lat.lat) {
+        m.set_spin(Spin(0.0, 0.0, 1.0));
     }
 
-    spin_config = spin_configuration;
+//    spin_config = spin_configuration;
 }
