@@ -8,14 +8,18 @@
 
 #pragma once
 class Site{
-public:
+private:
     int x;
     int y;
     int z;
-    Spin occupant;
+    Spin spin;
 
+public:
     Site(int in_x, int in_y, int in_z);
     std::vector<Site*> neighbors;
+    int getX(){return x;};
+    int getY(){return y;};
+    int getZ(){return z;};
 
-    void print_site(){std::cout << x << ", " << y << ", " << z << std::endl;}
+    void print_site(){std::cout << getX() << ", " << getY() << ", " << getZ() << std::endl;}
 };
