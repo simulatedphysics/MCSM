@@ -25,7 +25,7 @@ int main() {
     std::cout << std::endl << "The initial spin configuration is: " << std::endl << model_ptr->spin_config << std::endl;
     std::cout << "The energy of the initial spin configuration is: " << model_ptr->energy() << std::endl << std::endl;
 
-    int n_itr = 100000;
+    const int n_itr = 100000;
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
 
     std::cout << "Monte Carlo simulation is running... " << "(" << n_itr << " iterations)" << std::endl << std::endl;
@@ -46,6 +46,7 @@ int main() {
 
     std::unique_ptr<Model> ising_model_ptr(new Ising(16));
     ising_model_ptr->create_ferromagnetic_spin_configuration();
+    ising_model_ptr->lat.print_lattice();
 
     std::cout << std::endl << "The initial Ising spin configuration is: " << std::endl;
     ising_model_ptr -> print_spin_configuration();

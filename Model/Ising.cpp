@@ -35,9 +35,9 @@ mat Ising::new_spin(){
 };
 
 void Ising::create_initial_spin_configuration(){
-    mat spin_configuration(this->system_size, 3);
+    mat spin_configuration(system_size, 3);
 
-    for (int i = 0; i < this->system_size; i++) {
+    for (int i = 0; i < system_size; i++) {
         mat ns = new_spin();
         for (int j = 0; j < 3; j++) {
             spin_configuration(i, j) = ns(j);
@@ -56,15 +56,15 @@ std::stringstream Ising::save_spin_configuration(int spin_config_number){
 
     output << "{\"step\": " << spin_config_number << ", \"data\": [";
 
-    for (int i = 0; i < (this->system_size) - 1; i++) {
-        output << "{\"spin_number\": " << i << "," << "\"x\": " << (this->spin_config)(i, 0) << "," << "\"y\": "
-               << (this->spin_config)(i, 1) << "," << "\"z\": " << (this->spin_config)(i, 2) << "}, ";
+    for (int i = 0; i < (system_size) - 1; i++) {
+        output << "{\"spin_number\": " << i << "," << "\"x\": " << (spin_config)(i, 0) << "," << "\"y\": "
+               << (spin_config)(i, 1) << "," << "\"z\": " << (spin_config)(i, 2) << "}, ";
     }
 
-    output << "{\"spin_number\": " << (this->system_size) - 1 << "," << "\"x\": "
-           << (this->spin_config)((this->system_size) - 1, 0) << "," << "\"y\": "
-           << (this->spin_config)((this->system_size) - 1, 1) << "," << "\"z\": "
-           << (this->spin_config)((this->system_size) - 1, 2) << "}]}";
+    output << "{\"spin_number\": " << (system_size) - 1 << "," << "\"x\": "
+           << (spin_config)((system_size) - 1, 0) << "," << "\"y\": "
+           << (spin_config)((system_size) - 1, 1) << "," << "\"z\": "
+           << (spin_config)((system_size) - 1, 2) << "}]}";
 
     return output;
 };
