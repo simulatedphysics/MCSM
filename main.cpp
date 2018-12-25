@@ -51,9 +51,11 @@ int main() {
     ising_model_ptr -> print_spin_configuration();
     std::cout << "The energy of the initial spin configuration is: " << ising_model_ptr->energy() << std::endl << std::endl;
 
-    std::cout << "Spin 1: " << (ising_model_ptr->spin_config).row(0) << std::endl;
-    std::cout << "Dot product of two spins: " << std::endl;
-    std::cout << "Dot product of two spins: " << std::endl;
+    rowvec s1 = -(ising_model_ptr->spin_config).row(0);
+    rowvec s2 = (ising_model_ptr->spin_config).row(1);
+    std::cout << "Spin 1: " << s1 << std::endl;
+    std::cout << "Spin 2: " << s2 << std::endl;
+    std::cout << "Dot product of two spins: "  << dot(s1, s2) << std::endl;
 
     return 0;
 }
