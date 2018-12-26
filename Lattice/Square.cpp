@@ -8,22 +8,22 @@
 void Square::generate_lattice() {
     for (int i = 0; i < 4; i++) {
         for(int j = 0; j < 4; j++) {
-            lat.push_back(Site(j, i, 0));
+            getLattice().push_back(Site(j, i, 0));
         }
     }
 }
 
 int Square::convert_to_index(int x_, int y_) {
-    return n_x * y_ + x_;
+    return get_nx() * y_ + x_;
 }
 
 void Square::set_neighbors() {
     std::vector<Site>::pointer a;
-    a = &lat.front();
-    for(int i = 0; i < n_x; i++)
-        for (int j =0; j< n_y; j++){
+    a = &getLattice().front();
+    for(int i = 0; i < get_nx(); i++)
+        for (int j =0; j< get_ny(); j++){
             int site_ind(convert_to_index(i , j));
-            lat[site_ind].neighbors.push_back(a + convert_to_index(i % n_x, (j + 1) % n_y));
-            lat[site_ind].neighbors.push_back(a + convert_to_index((i + 1) % n_x, j % n_y));
+            getLattice()[site_ind].neighbors.push_back(a + convert_to_index(i % get_nx(), (j + 1) % get_ny()));
+            getLattice()[site_ind].neighbors.push_back(a + convert_to_index((i + 1) % get_nx(), j % get_ny()));
         }
 }

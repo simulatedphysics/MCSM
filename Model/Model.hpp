@@ -12,12 +12,12 @@ using namespace arma;
 #pragma once
 
 class Model {
-public:
+private:
     int system_size;
     mat spin_config;
     mat exchange_matrix;
     Square lat;
-
+public:
     virtual double energy() = 0;
 
     virtual double energy_change(int ind, mat new_spin_vec) = 0;
@@ -28,9 +28,15 @@ public:
 
     virtual Spin new_spin() = 0;
 
+    Square & getLattice(){return lat;};
+
     virtual void create_initial_spin_configuration() = 0;
 
-    void print_spin_configuration(){for(auto &m: lat.lat){m.getSpin().print_spin();} std::cout << std::endl;};
+    void print_spin_configuration(){for(auto &m: lat.getLattice()){m.getSpin().print_spin();} std::cout << std::endl;};
+
+    void setSystemSize(int sys){system_size = sys;};
+
+    int getSystemSize(){return system_size;};
 
     virtual void update_spin_configuration(uword ind, mat n_spin) = 0;
 

@@ -45,7 +45,7 @@ int main() {
     ising_model_ptr->create_initial_spin_configuration();
 
     std::cout << "Printing lattice..." << std::endl;
-    ising_model_ptr->lat.print_lattice();
+    ising_model_ptr->getLattice().print_lattice();
 
     std::cout << std::endl << "The initial Ising spin configuration is: " << std::endl;
     ising_model_ptr -> print_spin_configuration();
