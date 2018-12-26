@@ -41,25 +41,16 @@ int main() {
 
     std::cout << "Generating Ising model..." << std::endl;
     std::unique_ptr<Model> ising_model_ptr(new Ising(16));
+
+    std::cout << "Generating ferromagnetic spin configuration..." << std::endl;
     ising_model_ptr->create_ferromagnetic_spin_configuration();
+
+    std::cout << "Printing lattice..." << std::endl;
     ising_model_ptr->lat.print_lattice();
 
     std::cout << std::endl << "The initial Ising spin configuration is: " << std::endl;
     ising_model_ptr -> print_spin_configuration();
-    std::cout << "The energy of the initial spin configuration is: " << ising_model_ptr->energy() << std::endl << std::endl;
-
-    std::cout << std::endl << "The spin is:" << std::endl;
-    ising_model_ptr -> lat.lat[0].getSpin().print_spin();
-
-    std::cout << std::endl << "The first neighbor spin is:" << std::endl;
-    ising_model_ptr -> lat.lat[0].neighbors[0]->getSpin().print_spin();
-
-    std::cout << std::endl << "The second neighbor spin is:" << std::endl;
-    ising_model_ptr -> lat.lat[0].neighbors[1]->getSpin().print_spin();
-
-    std::cout << std::endl << "The dot product is: " <<
-    ising_model_ptr -> lat.lat[0].getSpin().dot(ising_model_ptr->lat.lat[0].neighbors[0]->getSpin())
-    << std::endl;
+    std::cout << "The energy of the initial spin configuration is: " << ising_model_ptr->energy() << std::endl;
 
 //    std::cout << "Printing lattice..." << std::endl;
 //    lattice_ptr->print_lattice();

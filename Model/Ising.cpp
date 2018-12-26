@@ -12,7 +12,12 @@ Ising::Ising(int system_size) {
 }
 
 double Ising::energy(){
-    return 0.0;
+    double tot_eng = 0.0;
+    for(auto &m: lat.lat) {
+        tot_eng += m.getSpin().dot(m.neighbors[0]->getSpin());
+        tot_eng += m.getSpin().dot(m.neighbors[1]->getSpin());
+    }
+    return tot_eng;
 };
 
 double Ising::energy_change(int ind, mat new_spin_vec){
@@ -67,28 +72,8 @@ std::stringstream Ising::save_spin_configuration(int spin_config_number){
     return output;
 };
 
-//void Ising::create_ferromagnetic_spin_configuration() {
-//    mat spin_configuration(10, 3);
-//
-//    rowvec ns = new_spin();
-//
-//    for (int i = 0; i < 10; i++) {
-//        for (int j = 0; j < 3; j++) {
-//            spin_configuration(i, j) = ns(j);
-//        }
-//    }
-//
-//    spin_config = spin_configuration;
-//}
-
 void Ising::create_ferromagnetic_spin_configuration() {
-//    mat spin_configuration(10, 3);
-//
-//    rowvec ns = new_spin();
-
     for (auto &m: lat.lat) {
         m.set_spin(Spin(0.0, 0.0, 1.0));
     }
-
-//    spin_config = spin_configuration;
 }
