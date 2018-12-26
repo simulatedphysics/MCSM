@@ -16,7 +16,7 @@ public:
 
     mat old_spin() override;
 
-    mat new_spin() override;
+    Spin new_spin() override;
 
     void create_initial_spin_configuration() override;
 

@@ -15,21 +15,23 @@ Heisenberg::Heisenberg(int system_size) {
     create_ferromagnetic_exchange_matrix();
 }
 
-mat Heisenberg::new_spin() {
-    return normalise(randu<rowvec>(3));
+Spin Heisenberg::new_spin() {
+//    return normalise(randu<rowvec>(3));
+    return Spin(0.0, 0.0, 0.0);
 }
 
+
 void Heisenberg::create_initial_spin_configuration() {
-    mat spin_configuration(static_cast<const uword>(this->system_size), 3);
-
-    for (int i = 0; i < this->system_size; i++) {
-        rowvec ns = new_spin();
-        for (int j = 0; j < 3; j++) {
-            spin_configuration(i, j) = ns(j);
-        }
-    }
-
-    this->spin_config = spin_configuration;
+//    mat spin_configuration(static_cast<const uword>(this->system_size), 3);
+//
+//    for (int i = 0; i < this->system_size; i++) {
+//        Spin ns = new_spin();
+//        for (int j = 0; j < 3; j++) {
+//            spin_configuration(i, j) = ns(j);
+//        }
+//    }
+//
+//    this->spin_config = spin_configuration;
 }
 
 
@@ -102,15 +104,7 @@ std::stringstream Heisenberg::save_spin_configuration(int spin_config_number) {
 
 
 void Heisenberg::create_ferromagnetic_spin_configuration() {
-    mat spin_configuration(10, 3);
-
-    rowvec ns = new_spin();
-
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 3; j++) {
-            spin_configuration(i, j) = ns(j);
+        for (auto &m: lat.lat) {
+            m.set_spin(Spin(0.0, 0.0, 1.0));
         }
-    }
-
-    spin_config = spin_configuration;
 }
