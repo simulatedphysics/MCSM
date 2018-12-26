@@ -51,5 +51,12 @@ int main() {
     ising_model_ptr -> print_spin_configuration();
     std::cout << "The energy of the initial spin configuration is: " << ising_model_ptr->energy() << std::endl;
 
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<double> dist(0.0, 1.0);
+
+    for (int i=0; i<16; ++i)
+        std::cout << dist(mt) << "\n";
+
     return 0;
 }
