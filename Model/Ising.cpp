@@ -28,23 +28,21 @@ mat Ising::old_spin(){
     return mat(1,3);
 };
 
-mat Ising::new_spin(){
-    mat s = zeros(1, 3);
-    s(0, 2) = 2*(std::rand()%2) - 1;
-    return s;
+Spin Ising::new_spin(){
+    return Spin(0.0, 0.0, 2*(std::rand()%2) - 1);
 };
 
 void Ising::create_initial_spin_configuration(){
-    mat spin_configuration(system_size, 3);
-
-    for (int i = 0; i < system_size; i++) {
-        mat ns = new_spin();
-        for (int j = 0; j < 3; j++) {
-            spin_configuration(i, j) = ns(j);
-        }
-    }
-
-    this->spin_config = spin_configuration;
+//    mat spin_configuration(system_size, 3);
+//
+//    for (int i = 0; i < system_size; i++) {
+//        mat ns = new_spin();
+//        for (int j = 0; j < 3; j++) {
+//            spin_configuration(i, j) = ns(j);
+//        }
+//    }
+//
+//    this->spin_config = spin_configuration;
 };
 
 void Ising::update_spin_configuration(uword ind, mat n_spin) {
