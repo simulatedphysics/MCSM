@@ -17,7 +17,7 @@ public:
     std::vector<Site> lat;
 
     virtual void generate_lattice() = 0;
-    void print_lattice(){for(auto &m:lat){m.print_site();}};
+    void print_lattice(){for(auto &m:lat){m.print_site();} std::cout << std::endl;};
 
     virtual void set_neighbors() = 0;
     virtual int convert_to_index(int, int) = 0;

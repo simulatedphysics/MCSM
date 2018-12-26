@@ -23,7 +23,7 @@ public:
     int getX(){return x;};
     int getY(){return y;};
     int getZ(){return z;};
-    Spin getSpin(){return spin;};
+    Spin & getSpin(){return spin;};
 
     void print_site(){std::cout << getX() << ", " << getY() << ", " << getZ() << std::endl;}
     void set_spin(Spin new_s){spin = new_s;}
