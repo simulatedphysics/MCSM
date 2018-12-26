@@ -13,9 +13,10 @@ Ising::Ising(int system_size) {
 
 double Ising::energy(){
     double tot_eng = 0.0;
+    double J = 1;
     for(auto &m: lat.lat) {
-        tot_eng += m.getSpin().dot(m.neighbors[0]->getSpin());
-        tot_eng += m.getSpin().dot(m.neighbors[1]->getSpin());
+        tot_eng += -J * m.getSpin().dot(m.neighbors[0]->getSpin());
+        tot_eng += -J * m.getSpin().dot(m.neighbors[1]->getSpin());
     }
     return tot_eng;
 };
@@ -38,16 +39,9 @@ Spin Ising::new_spin(){
 };
 
 void Ising::create_initial_spin_configuration(){
-//    mat spin_configuration(system_size, 3);
-//
-//    for (int i = 0; i < system_size; i++) {
-//        mat ns = new_spin();
-//        for (int j = 0; j < 3; j++) {
-//            spin_configuration(i, j) = ns(j);
-//        }
-//    }
-//
-//    this->spin_config = spin_configuration;
+    for (auto &m: lat.lat) {
+        m.set_spin(new_spin());
+    }
 };
 
 void Ising::update_spin_configuration(uword ind, mat n_spin) {
