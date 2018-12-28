@@ -22,7 +22,7 @@ public:
 
     void create_ferromagnetic_spin_configuration() override;
 
-    void update_spin_configuration(uword ind, mat n_spin) override;
+    void update_spin_configuration(int ind, Spin & n_spin) override;
 
     std::stringstream save_spin_configuration(int spin_config_number) override;
 };

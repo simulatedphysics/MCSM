@@ -38,7 +38,7 @@ public:
 
     int getSystemSize(){return system_size;};
 
-    virtual void update_spin_configuration(uword ind, mat n_spin) = 0;
+    virtual void update_spin_configuration(int ind, Spin & n_spin) = 0;
 
     virtual std::stringstream save_spin_configuration(int spin_config_number) = 0;
 

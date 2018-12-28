@@ -47,13 +47,13 @@ void Ising::create_initial_spin_configuration(std::mt19937 & a, std::uniform_int
     }
 };
 
-void Ising::update_spin_configuration(uword ind, mat n_spin) {
-//    spin_config.row(ind) = n_spin;
+void Ising::update_spin_configuration(int ind, Spin & n_spin) {
+    getLattice().getLattice()[ind].set_spin(n_spin);
 }
 
 std::stringstream Ising::save_spin_configuration(int spin_config_number){
     std::stringstream output;
-//
+
 //    output << "{\"step\": " << spin_config_number << ", \"data\": [";
 //
 //    for (int i = 0; i < (getSystemSize()) - 1; i++) {
