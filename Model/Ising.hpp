@@ -10,7 +10,7 @@ public:
 
     double energy() override;
 
-    double energy_change(int ind, mat new_spin_vec) override;
+    double energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_s) override;
 
 //    imat choose_random_index() override;
 

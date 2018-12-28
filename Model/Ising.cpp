@@ -9,21 +9,28 @@
 
 Ising::Ising(int system_size) {
     setSystemSize(system_size);
-}
+};
 
 double Ising::energy(){
-    double tot_eng = 0.0;
-    double J = 1;
+    double tot_eng(0.0);
+    double J(1.0);
     for(auto &m: getLattice().getLattice()) {
-        tot_eng += -J * m.getSpin().dot(m.neighbors[0]->getSpin());
-        tot_eng += -J * m.getSpin().dot(m.neighbors[1]->getSpin());
+        tot_eng += -J * ((m.getSpin()).dot((m.getNeighbors()[0])->getSpin()));
+        tot_eng += -J * ((m.getSpin()).dot((m.getNeighbors()[1])->getSpin()));
     }
     return tot_eng;
 };
 
-double Ising::energy_change(int ind, mat new_spin_vec){
-    std::cout << new_spin_vec << std::endl;
-    return ind*0.0;
+double Ising::energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_s){
+    double tot_eng = 0.0;
+    double J = 1.0;
+
+    Spin spin_difference(new_s - old_s);
+
+    for(auto &m: lattice_s.getNeighbors())
+        tot_eng += -J * spin_difference.dot(m->getSpin());
+
+    return tot_eng;
 };
 
 //imat Ising::choose_random_index(){

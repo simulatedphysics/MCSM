@@ -20,7 +20,7 @@ private:
 public:
     virtual double energy() = 0;
 
-    virtual double energy_change(int ind, mat new_spin_vec) = 0;
+    virtual double energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_s) = 0;
 
 //    virtual imat choose_random_index() = 0;
 
