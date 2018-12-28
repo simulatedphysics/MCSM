@@ -5,6 +5,7 @@
 #include "MonteCarlo.hpp"
 #include "../Model/Model.hpp"
 #include <nlohmann/json.hpp>
+#include <cmath>
 
 using json = nlohmann::json;
 
