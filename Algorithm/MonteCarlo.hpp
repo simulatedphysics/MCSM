@@ -6,6 +6,9 @@
 #include "../Model/Model.hpp"
 
 class MonteCarlo : public Algorithm {
+private:
+    double temperature = 1.0;
 public:
-    void simulate(int nitr, std::shared_ptr<Model> & model_ptr) override;
+    double boltzmann_factor(double eng_change, double temp);
+    void simulate(const int nitr, std::unique_ptr<Model> & model_ptr, double temp) override;
 };

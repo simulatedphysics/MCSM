@@ -9,9 +9,18 @@
 
 using json = nlohmann::json;
 
-void MonteCarlo::simulate(int nitr,  std::shared_ptr<Model> & model_ptr) {
-    std::ofstream output;
-    output.open("output.json");
+double MonteCarlo::boltzmann_factor(double eng_change, double temp) {
+    return std::exp(-eng_change/temp);
+};
+
+//void MonteCarlo::simulate(int nitr, std::unique_ptr<Model> &model_ptr, double temp) {
+//
+//}
+
+void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, double temp) {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, 15);
 
     json output_json = {
 		{"type", "common_origin"}, {"data", {} }
