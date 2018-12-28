@@ -13,5 +13,6 @@ public:
     double getY(){return y;};
     double getZ(){return z;};
     double dot(Spin &second_spin){return x*second_spin.getX() + y*second_spin.getY() + z*second_spin.getZ();};
+    Spin operator-(Spin & second_spin){return Spin(x-second_spin.getX(), y-second_spin.getY(), z-second_spin.getZ());};
     void print_spin(){std::cout << getX() << ", " << getY() << ", " << getZ() << std::endl;};
 };
