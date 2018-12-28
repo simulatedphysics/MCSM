@@ -10,5 +10,5 @@ using namespace arma;
 
 class Algorithm {
 public:
-    virtual void simulate(int nitr, std::shared_ptr<Model> & model_ptr)=0;
+    virtual void simulate(const int nitr, std::unique_ptr<Model> & model_ptr, double temp) = 0;
 };
