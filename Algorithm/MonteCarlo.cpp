@@ -35,9 +35,18 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 
     model_ptr->create_initial_spin_configuration(mt3, dist3);
 
+    std::cout << "The initial spin configuration is: " << std::endl;
+    model_ptr->print_spin_configuration();
+
+    std::cout << "The energy of the initial spin configuration is: " << std::endl;
+    std::cout << model_ptr->energy() << std::endl << std::endl;
 
     int accepted_counter = 0;
-  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
+//  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
+//
+//  	std::cout << "Inside MC..." << std::endl;
+
+    std::cout << "Monte Carlo simulation is running... " << "(" << nitr << " iterations)" << std::endl << std::endl;
 
     for (int i = 0; i < nitr; i++) {
         int random_index(dist(mt));
@@ -47,13 +56,34 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
         Spin old_spin_vec(lattice_site.getSpin());
         Spin new_spin_vec(0.0, 0.0, -old_spin_vec.getZ());
 
-        if (change_eng < 0.0) {
-            model_ptr->update_spin_configuration(random_index, new_s);
+//        Spin new_s(model_ptr->new_spin());
+
+//        std::cout << "The old spin is: " << std::endl;
+//        old_spin_vec.print_spin();
+//        std::cout << "The new spin is: " << std::endl;
+//        new_spin_vec.print_spin();
+
+        double change_eng(model_ptr->energy_change(random_index, lattice_site, old_spin_vec, new_spin_vec));
+
+//        std::cout << "The change in energy is: " << change_eng << std::endl;
+//        double rand_num(dist2(mt2));
+
+//        if (std::log(rand_num) < -change_eng/temp) {
+        if (0.0 > change_eng) {
+//            std::cout << "Change was accepted..." << std::endl;
+            model_ptr->update_spin_configuration(random_index, new_spin_vec);
+//            std::cout << "The spin configuration is:" << std::endl;
+//            model_ptr->print_spin_configuration();
             accepted_counter++;
-		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
+//		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
         }
     }
-    
-    output << output_json.dump();
-    output.close();
+
+    std::cout << "The final spin configuration is: " << std::endl;
+    model_ptr->print_spin_configuration();
+
+    std::cout << "The energy of the final spin configuration is: " << std::endl;
+    std::cout << model_ptr->energy() << std::endl << std::endl;
+//    output << output_json.dump();
+//    output.close();
 }
