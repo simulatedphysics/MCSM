@@ -16,9 +16,9 @@ public:
 
     mat old_spin() override;
 
-    Spin new_spin() override;
+    Spin new_spin(std::mt19937 & a, std::uniform_int_distribution<int> & b) override;
 
-    void create_initial_spin_configuration() override;
+    void create_initial_spin_configuration(std::mt19937 & a, std::uniform_int_distribution<int> & b) override;
 
     void create_ferromagnetic_spin_configuration() override;
 

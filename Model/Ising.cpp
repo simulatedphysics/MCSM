@@ -33,21 +33,17 @@ double Ising::energy_change(int ind, Site & lattice_s, Spin & old_s, Spin & new_
     return tot_eng;
 };
 
-//imat Ising::choose_random_index(){
-//    return imat(3,3);
-//};
-
 mat Ising::old_spin(){
     return mat(1,3);
 };
 
-Spin Ising::new_spin(){
-    return Spin(0.0, 0.0, 2*(std::rand()%2) - 1);
+Spin Ising::new_spin(std::mt19937 & a, std::uniform_int_distribution<int> & b){
+    return Spin(0.0, 0.0, 2.0*(b(a)) - 1.0);
 };
 
-void Ising::create_initial_spin_configuration(){
+void Ising::create_initial_spin_configuration(std::mt19937 & a, std::uniform_int_distribution<int> & b){
     for (auto &m: getLattice().getLattice()) {
-        m.set_spin(new_spin());
+        m.set_spin(new_spin(a, b));
     }
 };
 

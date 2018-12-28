@@ -26,11 +26,11 @@ public:
 
     virtual mat old_spin() = 0;
 
-    virtual Spin new_spin() = 0;
+    virtual Spin new_spin(std::mt19937 & a, std::uniform_int_distribution<int> & b) = 0;
 
     Square & getLattice(){return lat;};
 
-    virtual void create_initial_spin_configuration() = 0;
+    virtual void create_initial_spin_configuration(std::mt19937 & a, std::uniform_int_distribution<int> & b) = 0;
 
     void print_spin_configuration(){for(auto &m: lat.getLattice()){m.getSpin().print_spin();} std::cout << std::endl;};
 
