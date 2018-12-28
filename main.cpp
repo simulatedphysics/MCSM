@@ -25,7 +25,6 @@ int main() {
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
 
     const int n_itr(100000000);
-    std::cout << "Monte Carlo simulation is running... " << "(" << n_itr << " iterations)" << std::endl << std::endl;
     alg->simulate(n_itr, ising_model_ptr, 1.0);
 
     return 0;

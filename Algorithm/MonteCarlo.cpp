@@ -22,21 +22,30 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, 15);
 
-    json output_json = {
-		{"type", "common_origin"}, {"data", {} }
-	};
+    std::random_device rd3;
+    std::mt19937 mt3(rd3());
+    std::uniform_int_distribution<int> dist3(0, 1);
 
-    model_ptr->create_initial_spin_configuration();
+//    std::ofstream output;
+//    output.open("output.json");
+//
+//    json output_json = {
+//		{"type", "common_origin"}, {"data", {} }
+//	};
+
+    model_ptr->create_initial_spin_configuration(mt3, dist3);
 
 
     int accepted_counter = 0;
   	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
 
     for (int i = 0; i < nitr; i++) {
-        uword random_index = static_cast<uword>(randi<umat>(1, 1, distr_param(0, (model_ptr->system_size) - 1))(0));
-        mat old = model_ptr->spin_config.row(random_index);
-        Spin new_s = model_ptr->new_spin();
-        double change_eng = model_ptr->energy_change(static_cast<int>(random_index), new_s);
+        int random_index(dist(mt));
+//        std::cout << "The random index is: " << random_index << std::endl;
+
+        Site lattice_site(model_ptr->getLattice().getLattice()[random_index]);
+        Spin old_spin_vec(lattice_site.getSpin());
+        Spin new_spin_vec(0.0, 0.0, -old_spin_vec.getZ());
 
         if (change_eng < 0.0) {
             model_ptr->update_spin_configuration(random_index, new_s);
