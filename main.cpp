@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     std::cout << "Generating Monte Carlo algorithm..." << std::endl;
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
 
-    const int n_itr(1000);
+    const int n_itr(10);
     alg->simulate(n_itr, ising_model_ptr, 1.0);
 
 //    std::map<std::string, void (*)(void)> demos;
@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
 //
 //    demos[arg]();
 
-    demo_basic();
+    demo_basic(ising_model_ptr);
 
 //    for(int i = 0; i < 4; i++)
 //        gp << std::string("set arrow ") + std::to_string(i) + " from " + "0," + std::to_string(i) + " to 3," + std::to_string(i) + " nohead ls 1\n";
