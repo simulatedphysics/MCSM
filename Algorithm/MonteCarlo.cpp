@@ -6,6 +6,7 @@
 #include "../Model/Model.hpp"
 #include <nlohmann/json.hpp>
 #include <cmath>
+#include "../Plot/MagneticStatePlot.cpp"
 
 using json = nlohmann::json;
 
@@ -18,9 +19,11 @@ double MonteCarlo::boltzmann_factor(double eng_change, double temp) {
 //}
 
 void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, double temp) {
+    std::cout << "The system size is: " << model_ptr->getSystemSize() << std::endl;
+
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(0, 15);
+    std::uniform_int_distribution<int> dist(0, model_ptr->getSystemSize() - 1);
 
     std::random_device rd3;
     std::mt19937 mt3(rd3());
@@ -35,8 +38,10 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 
     model_ptr->create_initial_spin_configuration(mt3, dist3);
 
-    std::cout << "The initial spin configuration is: " << std::endl;
-    model_ptr->print_spin_configuration();
+    demo_basic(model_ptr);
+
+//    std::cout << "The initial spin configuration is: " << std::endl;
+//    model_ptr->print_spin_configuration();
 
     std::cout << "The energy of the initial spin configuration is: " << std::endl;
     std::cout << model_ptr->energy() << std::endl << std::endl;
@@ -71,19 +76,32 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 //        if (std::log(rand_num) < -change_eng/temp) {
         if (0.0 > change_eng) {
 //            std::cout << "Change was accepted..." << std::endl;
+//            std::cout << "Random index: " << random_index << std::endl;
             model_ptr->update_spin_configuration(random_index, new_spin_vec);
 //            std::cout << "The spin configuration is:" << std::endl;
 //            model_ptr->print_spin_configuration();
+            add_to_energy_list(change_eng);
             accepted_counter++;
 //		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
         }
     }
 
-    std::cout << "The final spin configuration is: " << std::endl;
-    model_ptr->print_spin_configuration();
+    demo_basic(model_ptr);
+
+//    std::cout << "The final spin configuration is: " << std::endl;
+//    model_ptr->print_spin_configuration();
 
     std::cout << "The energy of the final spin configuration is: " << std::endl;
     std::cout << model_ptr->energy() << std::endl << std::endl;
 //    output << output_json.dump();
 //    output.close();
+
+    std::cout << "The energy list is: " << std::endl;
+    print_energy_list();
+
+    std::vector<double> en = get_energy_list();
+    double tot_energy = std::accumulate(en.begin(), en.end(), 0.0);
+
+    std::cout << "The total change in energy is: " << tot_energy << std::endl;
 }
+
