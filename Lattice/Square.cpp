@@ -6,8 +6,8 @@
 #include <vector>
 
 void Square::generate_lattice() {
-    for (int i = 0; i < 4; i++) {
-        for(int j = 0; j < 4; j++) {
+    for (int i = 0; i < get_ny(); i++) {
+        for(int j = 0; j < get_nx(); j++) {
             getLattice().emplace_back(Site(j, i, 0));
         }
     }
@@ -28,4 +28,10 @@ void Square::set_neighbors() {
             getLattice()[site_ind].getNeighbors().push_back(a + convert_to_index(i % get_nx(), (j - 1 + get_ny()) % get_ny()));
             getLattice()[site_ind].getNeighbors().push_back(a + convert_to_index((i - 1 + get_nx()) % get_nx(), j % get_ny()));
         }
+}
+
+void Square::print_neighbors(){
+    for (auto &m: getLattice())
+        for (auto &n: m.getNeighbors())
+            n->print_site();
 }

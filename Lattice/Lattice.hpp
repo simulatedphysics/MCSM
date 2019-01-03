@@ -9,8 +9,8 @@
 
 #pragma once
 class Lattice{
-    int n_x = 4;
-    int n_y = 4;
+    int n_x;
+    int n_y;
     int n_z = 0;
     std::vector<Site> lat;
 public:
@@ -23,6 +23,9 @@ public:
     int get_ny(){return n_y;};
     int get_nz(){return n_z;};
 
-//    Probably should set this, because this is a base class
+    void set_nx(int nx_in){n_x = nx_in;};
+    void set_ny(int ny_in){n_y = ny_in;};
+    void set_nz(int nz_in){n_z = nz_in;};
+
     virtual ~Lattice() = default;;
 };
