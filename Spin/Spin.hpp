@@ -9,10 +9,10 @@ class Spin{
 public:
     Spin(double x_, double y_, double z_){x = x_; y = y_; z = z_;};
     Spin(){};
-    double getX(){return x;};
-    double getY(){return y;};
-    double getZ(){return z;};
-    double dot(Spin &second_spin){return x*second_spin.getX() + y*second_spin.getY() + z*second_spin.getZ();};
-    Spin operator-(Spin & second_spin){return Spin(x-second_spin.getX(), y-second_spin.getY(), z-second_spin.getZ());};
-    void print_spin(){std::cout << getX() << ", " << getY() << ", " << getZ() << std::endl;};
+    double get_x(){return x;};
+    double get_y(){return y;};
+    double get_z(){return z;};
+    double dot(Spin &second_spin){return x*second_spin.get_x() + y*second_spin.get_y() + z*second_spin.get_z();};
+    Spin operator-(Spin & second_spin){return Spin(x-second_spin.get_x(), y-second_spin.get_y(), z-second_spin.get_z());};
+    void print_spin(){std::cout << get_x() << ", " << get_y() << ", " << get_z() << std::endl;};
 };

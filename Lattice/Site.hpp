@@ -20,11 +20,11 @@ private:
 
 public:
     Site(int in_x, int in_y, int in_z);
-    int getX(){return x;};
-    int getY(){return y;};
-    int getZ(){return z;};
-    Spin & getSpin(){return spin;};
-    std::vector<Site*> & getNeighbors(){return neighbors;};
-    void print_site(){std::cout << getX() << ", " << getY() << ", " << getZ() << std::endl;}
+    int get_x(){return x;};
+    int get_y(){return y;};
+    int get_z(){return z;};
+    Spin & get_spin(){return spin;};
+    std::vector<Site*> & get_neighbors(){return neighbors;};
+    void print_site(){std::cout << get_x() << ", " << get_y() << ", " << get_z() << std::endl;}
     void set_spin(Spin new_s){spin = new_s;}
 };
