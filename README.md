@@ -7,4 +7,4 @@ the concept of simulated annealing.
 
 The ferromagnetic state can be obtained by allowing the Monte Carlo to accept energy changes that both lower the energy as well as leave the energy unchanged. This does not always yield a ferromagnetic state, though. There are states that cannot be changed by this acceptance criterion. These states involve thick stripes that run all the way across the system.
 
-![alt text](Figures/ising.png)
+![alt text](https://github.com/simulatedphysics/MCSM/blob/master/Figures/ising.pdf)
