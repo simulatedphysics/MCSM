@@ -59,4 +59,5 @@ void demo_basic(std::unique_ptr<Model> & model_ptr) {
 
     gp << "set sample 5000\n";
     gp << "p -4 ls 1 notitle\n";
+    gp << "set output 'ising.png'\n";
 }

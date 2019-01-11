@@ -19,8 +19,8 @@ int main(int argc, char **argv) {
     std::cout << "Simulation software" << std::endl << std::endl;
     std::cout << "-----------------------------------------------------" << std::endl << std::endl;
 
-    int n_x_in = 40;
-    int n_y_in = 40;
+    int n_x_in = 60;
+    int n_y_in = 60;
 
 //    std::cout << "Enter number of unit cells in the x-direction: " <<std::endl;
 //    std::cin >> n_x_in;
@@ -39,11 +39,11 @@ int main(int argc, char **argv) {
     std::cout << "Generating Monte Carlo algorithm..." << std::endl;
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
 
-    const int n_itr(1000000);
+    const int n_itr(10000000);
 
     demo_basic(is);
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 2; i++) {
         alg->simulate(n_itr, is, 8000.25 - 1000.0 * i);
         demo_basic(is);
     }
