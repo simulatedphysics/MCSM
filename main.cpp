@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 
     demo_basic(is);
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 1; i++) {
         alg->simulate(n_itr, is, 8000.25 - 1000.0 * i);
         demo_basic(is);
     }
