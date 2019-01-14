@@ -11,6 +11,7 @@
 #include "Lattice/Lattice.hpp"
 #include "Model/Ising.hpp"
 #include "Plot/MagneticStatePlot.cpp"
+#include "Plot/AverageEnergyPlot.cpp"
 
 using namespace arma;
 
@@ -39,21 +40,27 @@ int main(int argc, char **argv) {
     std::cout << "Generating Monte Carlo algorithm..." << std::endl;
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
 
-    const int n_itr(10000000);
+    const int n_itr(1000000);
 
     demo_basic(is);
 
     std::vector<double> energy_list;
+    std::vector<double> temperatures_list;
 
-    for (int i = 0; i < 9; i++) {
-        alg->simulate(n_itr, is, 8000.25 - 1000.0 * i, energy_list);
+    for (int i = 0; i < 50; i++) {
+        alg->simulate(n_itr, is, 49000.25 - 1000.0 * i, energy_list);
         demo_basic(is);
     }
+
+    for (int i = 0; i < 50; i++)
+        temperatures_list.emplace_back(49000.25 - 1000.0 * i);
 
     std::cout << "The average energy list is: " << std::endl;
 
     for(auto m:energy_list)
         std::cout << m << std::endl;
+
+    plot_average_energy(temperatures_list, energy_list);
 
     return 0;
 }

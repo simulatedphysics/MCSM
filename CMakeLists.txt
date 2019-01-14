@@ -17,6 +17,7 @@ add_executable(
         Model/Ising.hpp
         Model/Ising.cpp
 #        Plot/MagneticStatePlot.cpp
+#        Plot/AverageEnergyPlot.cpp
 )
 
 target_link_libraries(MCSM armadillo util boost_iostreams boost_system boost_filesystem)
