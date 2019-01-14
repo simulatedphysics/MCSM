@@ -14,7 +14,7 @@ double MonteCarlo::boltzmann_factor(double eng_change, double temp) {
     return std::exp(-eng_change/temp);
 };
 
-void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, double temp) {
+void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, double temp, std::vector<double> & average_energy_list) {
     std::cout << "The system size is: " << model_ptr->get_system_size() << std::endl;
 
     std::random_device rd;
@@ -55,8 +55,8 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
         double change_eng(model_ptr->energy_change(random_index, lattice_site, old_spin_vec, new_spin_vec));
         double rand_num(dist2(mt2));
 
-//        if (std::log(rand_num) < -change_eng/temp) {
-        if (0 >= change_eng) {
+        if (std::log(rand_num) < -change_eng/temp) {
+//        if (0 >= change_eng) {
             model_ptr->update_spin_configuration(random_index, new_spin_vec);
             add_to_energy_list(change_eng);
             accepted_counter++;
@@ -77,10 +77,8 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
     std::vector<double> en = get_energy_list();
     double tot_energy = std::accumulate(en.begin(), en.end(), 0.0);
 
-    std::cout << "The average energy per site is: "
-    << (tot_energy + initial_energy*(accepted_counter+1))/(accepted_counter+1)
-    /model_ptr->get_system_size()
-    << std::endl;
+    average_energy_list.emplace_back((tot_energy + initial_energy*(accepted_counter+1))/(accepted_counter+1)
+    /model_ptr->get_system_size());
 
     std::cout << "The acceptance rate is: " << static_cast<double> (accepted_counter)/nitr << std::endl;
 }

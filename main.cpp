@@ -43,10 +43,17 @@ int main(int argc, char **argv) {
 
     demo_basic(is);
 
-    for (int i = 0; i < 1; i++) {
-        alg->simulate(n_itr, is, 8000.25 - 1000.0 * i);
+    std::vector<double> energy_list;
+
+    for (int i = 0; i < 9; i++) {
+        alg->simulate(n_itr, is, 8000.25 - 1000.0 * i, energy_list);
         demo_basic(is);
     }
+
+    std::cout << "The average energy list is: " << std::endl;
+
+    for(auto m:energy_list)
+        std::cout << m << std::endl;
 
     return 0;
 }
