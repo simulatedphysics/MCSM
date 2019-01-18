@@ -31,7 +31,6 @@ void demo_basic(std::unique_ptr<Model> & model_ptr) {
     gp << "unset border\n";
     gp << "set size sq\n";
     gp << "set output 'ising.png'\n";
-//    gp << "set term x11\n";
     gp << "set style line 1 lt 1 lc rgb \"black\" lw 2\n";
     gp << "set style fill solid 2.0 noborder\n";
     gp << "set title \"Ising Model: " << nx << " x " << ny << " Unit Cells\"\n";
@@ -60,6 +59,4 @@ void demo_basic(std::unique_ptr<Model> & model_ptr) {
 
     gp << "set sample 5000\n";
     gp << "p -4 ls 1 notitle\n";
-
-//    gp << "replot\n";
 }

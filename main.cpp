@@ -34,8 +34,8 @@ int main(int argc, char **argv) {
 
     std::unique_ptr<Model> is(new Ising(a, n_x_in * n_y_in));
 
-    is->create_random_initial_spin_configuration(mt, dist);
-    is->get_lattice().set_neighbors();
+    is -> create_random_initial_spin_configuration(mt, dist);
+    is -> get_lattice().set_neighbors();
 
     std::cout << "Generating Monte Carlo algorithm..." << std::endl;
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
@@ -47,20 +47,27 @@ int main(int argc, char **argv) {
     std::vector<double> energy_list;
     std::vector<double> temperatures_list;
 
-    for (int i = 0; i < 50; i++) {
-        alg->simulate(n_itr, is, 49000.25 - 1000.0 * i, energy_list);
-        demo_basic(is);
+    std::vector<double> accepted_list;
+    std::vector<double> acceptance_list;
+    double max_simulation_temperature = 20000.25;
+    int size_of_temperature_steps = 1000;
+
+    for (int i = 0; i < 21; i++) {
+        alg->simulate(n_itr, is, max_simulation_temperature - 1000.0 * i, energy_list);
+//        demo_basic(is);
     }
 
     for (int i = 0; i < 50; i++)
-        temperatures_list.emplace_back(49000.25 - 1000.0 * i);
+        temperatures_list.emplace_back(max_simulation_temperature - 1000.0 * i);
 
     std::cout << "The average energy list is: " << std::endl;
 
     for(auto m:energy_list)
         std::cout << m << std::endl;
 
-    plot_average_energy(temperatures_list, energy_list);
+    plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
+
+//    std::cout << "The minimum temperature is: " << temperatures_list
 
     return 0;
 }

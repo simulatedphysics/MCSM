@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 #include <cmath>
 //#include "../Plot/MagneticStatePlot.cpp"
+//#include "../Plot/AverageEnergyPlot.cpp"
 
 using json = nlohmann::json;
 
@@ -60,6 +61,7 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
             model_ptr->update_spin_configuration(random_index, new_spin_vec);
             add_to_energy_list(change_eng);
             accepted_counter++;
+//            acceptance_list.emplace_back(static_cast<double> (accepted_counter)/(i + 1));
 //		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
         }
     }
@@ -81,5 +83,8 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
     /model_ptr->get_system_size());
 
     std::cout << "The acceptance rate is: " << static_cast<double> (accepted_counter)/nitr << std::endl;
+
+
+//    plot_average_energy(accepted_list, acceptance_list, "acceptance_plot.png");
 }
 

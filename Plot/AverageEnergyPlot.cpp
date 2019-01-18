@@ -19,7 +19,7 @@
 #endif
 
 #pragma once
-void plot_average_energy(std::vector<double> temp_list, std::vector<double> average_energy_list) {
+void plot_average_energy(std::vector<double> temp_list, std::vector<double> average_energy_list, const std::string output_file, double max_temp) {
     Gnuplot gp;
 
     std::vector<boost::tuple<double, double> > pts_A;
@@ -27,10 +27,10 @@ void plot_average_energy(std::vector<double> temp_list, std::vector<double> aver
     for(int i = 0; i < temp_list.size(); i++)
         pts_A.emplace_back(boost::make_tuple(temp_list[i], average_energy_list[i]));
 
-    gp << "set xr [0:8001]\n";
+    gp << "set xr [0:" << std::to_string(max_temp) << "]\n";
     gp << "set yr [-2:2]\n";
-    gp << "set output 'average_energy.png'\n";
+    gp << "set output '" << output_file << "'\n";
 
-    gp << "plot '-' with lines title 'pts_A'\n";
+    gp << "plot '-' with lines title 'Average Energy'\n";
     gp.send1d(pts_A);
 }
