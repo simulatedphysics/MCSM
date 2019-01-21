@@ -40,25 +40,28 @@ int main(int argc, char **argv) {
     std::cout << "Generating Monte Carlo algorithm..." << std::endl;
     std::unique_ptr<Algorithm> alg(new MonteCarlo);
 
-    const int n_itr(1000000);
-
-    demo_basic(is);
+    const int n_itr(100000);
 
     std::vector<double> energy_list;
     std::vector<double> temperatures_list;
 
     std::vector<double> accepted_list;
     std::vector<double> acceptance_list;
-    double max_simulation_temperature = 20000.25;
-    int size_of_temperature_steps = 1000;
+    double min_simulation_temperature = 0.05;
+    double max_simulation_temperature = 2.00;
+    int number_of_temperature_steps = 50;
 
-    for (int i = 0; i < 21; i++) {
-        alg->simulate(n_itr, is, max_simulation_temperature - 1000.0 * i, energy_list);
-//        demo_basic(is);
+
+
+    for(int i = 0; i < number_of_temperature_steps + 1; i++)
+    {
+        temperatures_list.emplace_back(max_simulation_temperature - (max_simulation_temperature - min_simulation_temperature) * i / number_of_temperature_steps);
     }
 
-    for (int i = 0; i < 50; i++)
-        temperatures_list.emplace_back(max_simulation_temperature - 1000.0 * i);
+
+    for (auto &temperature: temperatures_list) {
+        alg->simulate(n_itr, is, temperature, energy_list);
+    }
 
     std::cout << "The average energy list is: " << std::endl;
 
@@ -67,7 +70,7 @@ int main(int argc, char **argv) {
 
     plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
 
-//    std::cout << "The minimum temperature is: " << temperatures_list
+
 
     return 0;
 }

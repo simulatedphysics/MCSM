@@ -29,6 +29,7 @@ void plot_average_energy(std::vector<double> temp_list, std::vector<double> aver
 
     gp << "set xr [0:" << std::to_string(max_temp) << "]\n";
     gp << "set yr [-2:2]\n";
+    gp << "set term png size 1000, 1000\n";
     gp << "set output '" << output_file << "'\n";
 
     gp << "plot '-' with lines title 'Average Energy'\n";
