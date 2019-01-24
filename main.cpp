@@ -52,7 +52,6 @@ int main(int argc, char **argv) {
     int number_of_temperature_steps = 50;
 
 
-
     for(int i = 0; i < number_of_temperature_steps + 1; i++)
     {
         temperatures_list.emplace_back(max_simulation_temperature - (max_simulation_temperature - min_simulation_temperature) * i / number_of_temperature_steps);
@@ -69,8 +68,6 @@ int main(int argc, char **argv) {
         std::cout << m << std::endl;
 
     plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
-
-
 
     return 0;
 }
