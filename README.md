@@ -11,8 +11,8 @@ The ferromagnetic state can be obtained by allowing the Monte Carlo to accept en
 <img src="Figures/ising.png">
   </p>
 
-![alt text](Figures/ising.png)
-
 The ferromagnetic state either has all blue or all red sites, as shown here.
 
-![alt text](Figures/ferromagnetic_state.png)
+<p align="center">
+<img src="Figures/ferromagnetic_state.png">
+  </p>
