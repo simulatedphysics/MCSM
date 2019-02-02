@@ -16,3 +16,5 @@ The ferromagnetic state either has all blue or all red sites, as shown here.
 <p align="center">
 <img src="Figures/ferromagnetic_state.png">
   </p>
+
+The next model we will study is the classical Heisenberg model. We will study the nearest neighbor contribution.
