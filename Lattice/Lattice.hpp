@@ -19,7 +19,10 @@ public:
     virtual int convert_to_index(int, int) = 0;
     std::vector<Site> & get_lattice(){return lat;};
     void print_lattice(){for(auto &m:lat){m.print_site();} std::cout << std::endl;};
-    double calculate_magnetization();
+    double calculate_magnetization(){ double total_mag = 0;
+        for(auto &m:lat){total_mag += m.get_spin().get_z();}
+        return total_mag/(n_x * n_y);
+    }
     int get_nx(){return n_x;};
     int get_ny(){return n_y;};
     int get_nz(){return n_z;};
@@ -31,7 +34,3 @@ public:
     virtual ~Lattice() = default;;
 };
 
-double Lattice::calculate_magnetization() { double total_mag = 0;
-    for(auto &m:lat){total_mag += m.get_spin().get_z();}
-    return total_mag/(n_x * n_y);
-}

@@ -60,6 +60,7 @@ void MonteCarlo::simulate(const int nitr, std::unique_ptr<Model> & model_ptr, do
 //        if (0 >= change_eng) {
             model_ptr->update_spin_configuration(random_index, new_spin_vec);
             add_to_energy_list(change_eng);
+            add_to_magnetization_list(model_ptr->get_lattice().calculate_magnetization());
             accepted_counter++;
 //            acceptance_list.emplace_back(static_cast<double> (accepted_counter)/(i + 1));
 //		  	output_json["data"].push_back(model_ptr->save_spin_configuration(accepted_counter).str());
