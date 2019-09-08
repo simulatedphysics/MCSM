@@ -8,6 +8,7 @@
 //#include "Model/Heisenberg.hpp"
 #include "Algorithm/MonteCarlo.hpp"
 #include "Lattice/Square.hpp"
+#include "Lattice/Triangular.hpp"
 #include "Lattice/Lattice.hpp"
 #include "Model/Ising.hpp"
 #include "Plot/MagneticStatePlot.cpp"
@@ -26,7 +27,8 @@ int main(int argc, char **argv) {
 //    std::cout << "Enter number of unit cells in the x-direction: " <<std::endl;
 //    std::cin >> n_x_in;
 
-    Square a(n_x_in, n_y_in);
+    Triangular a(n_x_in, n_y_in);
+    std::cout << "Lattice vector component: " << a.get_a1()[0] << std::endl;
 
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -49,7 +51,7 @@ int main(int argc, char **argv) {
     std::vector<double> acceptance_list;
     double min_simulation_temperature = 0.05;
     double max_simulation_temperature = 2.00;
-    int number_of_temperature_steps = 50;
+    int number_of_temperature_steps = 1;
 
 
     for(int i = 0; i < number_of_temperature_steps + 1; i++)
@@ -68,6 +70,8 @@ int main(int argc, char **argv) {
         std::cout << m << std::endl;
 
     plot_average_energy(temperatures_list, energy_list, "average_energy.png", max_simulation_temperature);
+
+    demo_basic(is);
 
     return 0;
 }

@@ -24,6 +24,9 @@ void demo_basic(std::unique_ptr<Model> & model_ptr) {
 
     int nx = model_ptr->get_lattice().get_nx();
     int ny = model_ptr->get_lattice().get_ny();
+    vec3 a1 = model_ptr->get_lattice().get_a1();
+    vec3 a2 = model_ptr->get_lattice().get_a2();
+//    vec3 xrange =
 
     gp << "set xr [-0.5:" + std::to_string(nx - 0.5) + "]\n";
     gp << "set yr [-0.5:" + std::to_string(ny - 0.5) + "]\n";
@@ -35,27 +38,39 @@ void demo_basic(std::unique_ptr<Model> & model_ptr) {
     gp << "set style fill solid 2.0 noborder\n";
     gp << "set title \"Ising Model: " << nx << " x " << ny << " Unit Cells\"\n";
 
-    for(int i = 0; i < ny; i++)
-        gp << std::string("set arrow ") + std::to_string(i + 1) + " from " + "0," + std::to_string(i) + " to " + std::to_string(nx - 1) + "," + std::to_string(i) + " nohead ls 1\n";
+    for(int i = 0; i < ny; i++) {
+        vec3 left_point, right_point;
+        left_point = i*a2;
+        right_point = (nx-1)*a1 + i*a2;
+        gp << std::string("set arrow ") + std::to_string(i + 1) + " from " \
+        + std::to_string(left_point[0]) + "," + std::to_string(left_point[1]) \
+        + " to " + std::to_string(right_point[0]) + "," \
+        + std::to_string(right_point[1]) + " nohead ls 1\n";
+    }
 
-    for(int i = 0; i < nx; i++)
-        gp << std::string("set arrow ") + std::to_string(i + ny + 1) + " from " + std::to_string(i) + ",0 to " + std::to_string(i) + "," + std::to_string(ny - 1) + " nohead ls 1\n";
-
+    for(int i = 0; i < nx; i++) {
+        vec3 bottom_point, top_point;
+        bottom_point = i * a1;
+        top_point =  i * a1 + (ny - 1) * a2;
+        gp << std::string("set arrow ") + std::to_string(i + ny + 1) + " from " \
+        + std::to_string(bottom_point[0]) + "," + std::to_string(bottom_point[1]) \
+        + " to " + std::to_string(top_point[0]) + "," + std::to_string(top_point[1]) + " nohead ls 1\n";
+    }
     std::string col;
 
-    for (int i = 0; i < nx*ny; i++) {
-        if(model_ptr->get_lattice().get_lattice()[i].get_spin().get_z() < 0.0)
-            col = "\"navy\"";
-        else
-            col = "\"red\"";
-
-        int x_coord(model_ptr->get_lattice().get_lattice()[i].get_x());
-        int y_coord(model_ptr->get_lattice().get_lattice()[i].get_y());
-
-        gp << "set object " + std::to_string(i+1) + " circle at " +
-        std::to_string(x_coord) + "," + std::to_string(y_coord) +
-        " size first 0.40 fc rgb " + col + " front\n";
-    }
+//    for (int i = 0; i < nx*ny; i++) {
+//        if(model_ptr->get_lattice().get_lattice()[i].get_spin().get_z() < 0.0)
+//            col = "\"navy\"";
+//        else
+//            col = "\"red\"";
+//
+//        int x_coord(model_ptr->get_lattice().get_lattice()[i].get_x());
+//        int y_coord(model_ptr->get_lattice().get_lattice()[i].get_y());
+//
+//        gp << "set object " + std::to_string(i+1) + " circle at " +
+//        std::to_string(x_coord) + "," + std::to_string(y_coord) +
+//        " size first 0.40 fc rgb " + col + " front\n";
+//    }
 
     gp << "set sample 5000\n";
     gp << "p -4 ls 1 notitle\n";
