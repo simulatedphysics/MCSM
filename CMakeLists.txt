@@ -18,6 +18,6 @@ add_executable(
         Model/Ising.cpp
 #        Plot/MagneticStatePlot.cpp
 #        Plot/AverageEnergyPlot.cpp
-)
+        Lattice/Triangular.hpp Lattice/Triangular.cpp)
 
 target_link_libraries(MCSM armadillo util boost_iostreams boost_system boost_filesystem)
