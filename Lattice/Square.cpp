@@ -5,10 +5,21 @@
 #include "Square.hpp"
 #include <vector>
 
+Square::Square(int nx_in, int ny_in)
+{
+    set_nx(nx_in);
+    set_ny(ny_in);
+    set_a1({1.0, 0.0, 0.0});
+    set_a2({0.0, 1.0, 0.0});
+    set_a3({0.0, 0.0, 1.0});
+    generate_lattice();
+}
+
 void Square::generate_lattice() {
     for (int i = 0; i < get_ny(); i++) {
         for(int j = 0; j < get_nx(); j++) {
-            get_lattice().emplace_back(Site(j, i, 0));
+            vec3 siteValue = j*get_a1() + i*get_a2();
+            get_lattice().emplace_back(Site(siteValue[0], siteValue[1], 0));
         }
     }
 }
